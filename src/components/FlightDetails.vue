@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-4 ml-3">
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-12 col-md-9 col-lg-7">
                 <div class="card">
                     <div class="card-header">
                         <strong>{{ flight.flight.iata}}</strong>

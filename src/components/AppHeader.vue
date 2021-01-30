@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark static-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <h1>Flight App</h1>
+                <h1><span class="color">F</span>light App</h1>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -26,3 +26,9 @@
     </nav>
 
 </template>
+
+<style scoped>
+    .color {
+        color: #343a40;
+    }
+</style>

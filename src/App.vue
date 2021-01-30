@@ -21,6 +21,7 @@ export default {
 
 <style>
     body {
+        font-family: 'Cairo', sans-serif;
         background-image: url("./assets/images/bg-body.jpg");
         background-repeat: no-repeat;
         background-size: cover;
