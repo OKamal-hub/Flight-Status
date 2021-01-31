@@ -10,12 +10,14 @@
                     </div>
                     <div class="card-body">
                         <div class="departure text-center">
-                            <span class="title">Departure</span>
+                            <p class="title">Departure</p>
                             <p class="mt-2"><strong>{{ flight.departure.airport }}</strong></p>
+                            <p class="mt-2">{{ flight.departure.estimated }}</p>
                         </div>
                         <div class="arrival text-center">
-                            <span class="title">Arrival</span>
+                            <p class="title">Arrival</p>
                             <p class="mt-2"><strong>{{ flight.arrival.airport }}</strong></p>
+                            <p class="mt-2">{{ flight.arrival.estimated }}</p>
                         </div>
                     </div>
                     <div class="card-footer text-muted">
@@ -36,14 +38,11 @@
 </script>
 
 <style scoped>
-
     .circle {
         font-size: 20px;
         color: #777;
         margin-left: 8px;
         margin-right: 8px;
-        position: relative;
-        top: -2px;
     }
 
     .departure {
@@ -59,15 +58,25 @@
 
     .title {
         background: rgba(0,0,0,.03);
-        padding: 5px 10px 7px 10px;
+        padding: 5px 0;
         border-radius: 50px;
+    }
+
+    .departure .title {
+        margin-right: 10px;
+    }
+
+    .arrival .title {
+        margin-left: 10px;
     }
 
     .status {
         background: #34353e;
         color: #fff;
-        padding: 5px 10px 7px 10px;
-        border-radius: 50px;
+        padding: 27px;
+        position: absolute;
+        top: 0;
+        right: 0px;
+        border-radius: 3px;
     }
-
 </style>
