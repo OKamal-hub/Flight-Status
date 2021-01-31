@@ -73,7 +73,7 @@
     .status {
         background: #34353e;
         color: #fff;
-        padding: 27px;
+        padding: 25px;
         position: absolute;
         top: 0;
         right: 0px;

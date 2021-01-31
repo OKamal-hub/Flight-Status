@@ -28,9 +28,8 @@ export default {
         height: 100%;
     }
 
-    h1, h2,  h4 {
+    h1, h2{
         color: #fff;
     }
-
 </style>
 

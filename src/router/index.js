@@ -1,28 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AppHome from '../components/AppHome';
-import AppAbout from '../components/AppAbout';
-import AppContact from '../components/AppContact';
-import PageNotFound from '../components/PageNotFound';
+import Home from '../components/pages/home/Home';
+import About from '../components/pages/About';
+import Contact from '../components/pages/Contact';
+import NotFound from '../components/pages/NotFound';
 
 const routes = [
     {
         path: '/',
         name: 'Home',
-        component: AppHome
+        component: Home
     },
     {
         path: '/about',
         name: 'About',
-        component: AppAbout
+        component: About
     },
     {
         path: '/contact',
         name: 'Contact',
-        component: AppContact
+        component: Contact
     },
     {
         path: '/:notFound(.*)',
-        component: PageNotFound
+        component: NotFound
     },
 ];
 

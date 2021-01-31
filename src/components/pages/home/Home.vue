@@ -4,7 +4,8 @@
             <div class="col-sm-12 col-md-9 col-lg-7">
                 <h2 class="mb-3">Welcome!</h2>
                 <p class="mb-5">Flight App is the leader in providing advanced, accurate, actionable data and insights
-                    that inform every aviation decision.</p>
+                    that inform every aviation decision.
+                </p>
                 <p class="mb-3">Get your flight details</p>
             </div>
         </div>
@@ -12,16 +13,21 @@
             <div class="col-sm-12 col-md-9 col-lg-7">
                 <div class="card">
                     <div class="card-body">
+
+                        <!-- Flight Form -->
                         <form class="form-inline mb-2 ml-3" @submit.prevent="getDetails">
                             <label for="flight_number" class="ml-3">Flight Number:</label>
                             <input type="text" :class="{'is-invalid': errors}" class="form-control ml-2"
                                    id="flight_number" placeholder="(e.g. TK815)" v-model="flightNumber">
                             <button type="submit" class="btn btn-dark ml-3">Search Flight</button>
+
+                            <!-- Loader -->
                             <div v-if="loading" class="ml-5">
-                                <img src="../assets/loader.gif" alt="" width="50" height="50">
+                                <img src="../../../assets/loader.gif" alt="" width="50" height="50">
                             </div>
                         </form>
 
+                        <!-- Error Messages -->
                         <div v-if="errors">
                             <ul>
                                 <li class="text-danger" v-for="error in errors" :key="error">
@@ -36,6 +42,7 @@
         </div>
     </div>
 
+    <!-- Flight Details -->
     <div v-if="details">
         <flight-details :flight="details"></flight-details>
     </div>
@@ -64,7 +71,8 @@
                 this.details = null;
                 this.loading = true;
 
-                axios.post('http://flight-app.test/api/flights', {
+                //Request Flight Details From the API
+                axios.post('https://flight-track-app.herokuapp.com/api/flights', {
                     flight_iata: this.flightNumber,
                 }).then(response => {
                     this.details = response.data.flight_details;
@@ -72,7 +80,6 @@
                 }).catch(error => {
                     this.errors = error.response.data.errors;
                 }).then(() => this.loading = false);
-
             }
         },
 
