@@ -26,6 +26,7 @@ export default {
         background-attachment: fixed;
         max-width: 100%;
         height: 100%;
+        position: relative;
     }
 
     h1, h2{

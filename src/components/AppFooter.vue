@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+   <div class="container mt-4">
       <div class="footer">
          <div class="socials text-center">
             <a href="https://www.linkedin.com/in/omar-kamal93/"><i class="fab fa-linkedin"></i></a>
@@ -32,8 +32,6 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 10px;
-      margin-bottom: -140px;
+      margin-bottom: -30%;
    }
-
 </style>

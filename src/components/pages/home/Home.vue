@@ -15,27 +15,36 @@
                     <div class="card-body">
 
                         <!-- Flight Form -->
-                        <form class="form-inline mb-2 ml-3" @submit.prevent="getDetails">
-                            <label for="flight_number" class="ml-3">Flight Number:</label>
-                            <input type="text" :class="{'is-invalid': errors}" class="form-control ml-2"
-                                   id="flight_number" placeholder="(e.g. TK815)" v-model="flightNumber">
-                            <button type="submit" class="btn btn-dark ml-3">Search Flight</button>
+                        <form @submit.prevent="getDetails">
+                            <div class="form-group row">
+                                <label for="flight_number" class="col-sm-3 col-form-label">Flight Number<span
+                                        class="star">*</span></label>
+                                <div class="col-sm-5">
+                                    <input type="text" :class="{'is-invalid': errors}" class="form-control"
+                                           id="flight_number" placeholder="(e.g. TK815)" v-model="flightNumber">
+
+                                    <!-- Error Messages -->
+                                    <div v-if="errors">
+                                         <span class="text-danger" v-for="error in errors.flight_iata" :key="error">
+                                                    {{ error}}
+                                         </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <button type="submit" class="btn btn-dark">Search Flight</button>
+                                </div>
+                            </div>
+
+                            <div v-if="invalidData">
+                                <span class="text-danger">{{ invalidData}}</span>
+                            </div>
 
                             <!-- Loader -->
-                            <div v-if="loading" class="ml-5">
+                            <div class="ml-5 loader" v-if="loading">
                                 <img src="../../../assets/loader.gif" alt="" width="50" height="50">
                             </div>
                         </form>
-
-                        <!-- Error Messages -->
-                        <div v-if="errors">
-                            <ul>
-                                <li class="text-danger" v-for="error in errors" :key="error">
-                                    {{ error[0]}}
-                                </li>
-                            </ul>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -62,7 +71,8 @@
                 flightNumber: '',
                 details: null,
                 errors: null,
-                loading: false
+                loading: false,
+                invalidData: null
             };
         },
 
@@ -70,6 +80,8 @@
             getDetails() {
                 this.details = null;
                 this.loading = true;
+                this.errors = null;
+                this.invalidData = null;
 
                 //Request Flight Details From the API
                 axios.post('https://flight-track-app.herokuapp.com/api/flights', {
@@ -77,8 +89,15 @@
                 }).then(response => {
                     this.details = response.data.flight_details;
                     this.errors = null;
+                    this.invalidData = null;
                 }).catch(error => {
-                    this.errors = error.response.data.errors;
+                    if (error.response.status === 500) {
+                        this.invalidData = 'Sorry, no results were found.';
+                    } else {
+                        this.errors = error.response.data.errors;
+                        this.invalidData = null;
+                    }
+
                 }).then(() => this.loading = false);
             }
         },
@@ -92,7 +111,24 @@
         font-size: 20px;
     }
 
-    input {
-        width: 35%!important;
+    .star {
+        color: red;
+        padding-left: 3px;
     }
+
+    .loader {
+        display: inline-block;
+    }
+
+    .form-control:focus {
+        border-color: #34353e;
+        box-shadow: 0 0 0 0.2rem #34353e;
+    }
+
+    @media screen and (max-width: 571px) {
+        button {
+            margin-top: 16px;
+        }
+    }
+
 </style>

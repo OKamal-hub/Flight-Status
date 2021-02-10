@@ -79,4 +79,19 @@
         right: 0px;
         border-radius: 3px;
     }
+
+    @media screen and (max-width: 571px) {
+        .card-body {
+            text-align: center;
+        }
+
+        .arrival {
+            width: 100%;
+        }
+        .departure {
+            width: 100%;
+            border: none;
+        }
+    }
+
 </style>
